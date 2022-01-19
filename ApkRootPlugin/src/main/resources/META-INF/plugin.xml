@@ -1,0 +1,87 @@
+<idea-plugin>
+    <id>com.kwai.ApkRootPlugin</id>
+    <name>快手APP调试助手</name>
+    <vendor email="wenyingzhi@kuaishou.com" url="http://www.wenyingzhi.com">wenyingzhi</vendor>
+
+    <description><![CDATA[
+        通过感染APP,完成注入Hook框架&Hook模块,完成拦截点击等事件,方便快速定位代码的插件.<br>]]></description>
+
+    <idea-version since-build="171"/>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.android</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="org.intellij.sdk.action.GroupedActions" text="快手工具箱" popup="true" icon="AllIcons.Actions.Colors">
+            <add-to-group group-id="BuildMenu" anchor="first"/>
+            <action id="virus_app_id_core" class="gui.VirusAppAction" text="感染快手应用" description="感染快手应用" icon="AllIcons.Actions.Compile">
+            </action>
+            <action id="forward_tcp_id" class="gui.ForwardTcpAction" text="重新连接设备" description="执行 forward 命令" icon="AllIcons.Actions.Restart">
+            </action>
+            <separator/>
+            <!--运行-->
+            <action id="kwai.run_aar" class="action.KwaiRunAarAction" text="kkr aarrun"
+                    description="强制所有模块全源码参与编译"
+                    icon="/META-INF/icons/run_aar.svg">
+            </action>
+
+            <action id="kwai.run" class="action.KwaiRunAction" text="kkr run"
+                    description="类似在本地执行 ./gradlew run, 默认开启动态AAR编译加速"
+                    icon="/META-INF/icons/run.svg">
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl meta alt R"/>
+            </action>
+
+            <action id="kwai.run.Nebula" class="action.KwaiRunAction" text="kkr run(编译极速版)"
+                    description="类似在本地执行 ./gradlew run, 默认开启动态AAR编译加速"
+                    icon="/META-INF/icons/run_intermediates.svg">
+            </action>
+
+            <separator/>
+
+            <!--清除-->
+            <action id="kwai.clean" class="action.KwaiCleanAction" text="kkr clean"
+                    description="类似在本地执行./gradlew clean"
+                    icon="/META-INF/icons/clean.svg">
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl meta alt C"/>
+            </action>
+            <action id="kwai.cleansh" class="action.KwaiCleanShAction" text="kkr sh clean.sh"
+                    description="远程删除所有cache"
+                    icon="/META-INF/icons/cleansh.svg">
+            </action>
+            <action id="kwai.clear" class="action.KwaiClearAction" text="kkr clear"
+                    description="删除远程目录"
+                    icon="/META-INF/icons/clear.svg">
+            </action>
+            <separator/>
+
+            <!--同步-->
+            <action id="kwai.sync" class="action.KwaiSyncAction" text="kkr sync"
+                    description="同步代码, 拉回build/generated目录中的apt产生的代码、R文件等. 把本地maven内的文件推送到远程的maven目录中"
+                    icon="/META-INF/icons/sync.svg">
+            </action>
+            <separator/>
+
+            <!--安装-->
+            <action id="kwai.install" class="action.KwaiInstallAction" text="adb install apk"
+                    description="adb install -r kwai-android-dev-debug.apk"
+                    icon="/META-INF/icons/install.svg">
+            </action>
+            <separator/>
+
+            <!--停止-->
+            <action id="kwai.stop" class="action.KwaiStopAction" text="stop" description="终止远程编译"
+                    icon="/META-INF/icons/stop.svg">
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl meta alt S"/>
+            </action>
+        </group>
+
+    </actions>
+
+</idea-plugin>

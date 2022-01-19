@@ -1,0 +1,6 @@
+rootProject.name='AppHook'
+include ':app'
+include ':hookdemo'
+include ':dexhook'
+include ':core'
+include ':xposedcompat'

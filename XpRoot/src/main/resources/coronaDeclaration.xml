@@ -1,0 +1,43 @@
+<templateSet group="coronaDeclaration">
+  <template name="/cp" value="/**&#10; * @Description: $mouse$&#10; * @Relation: $enum$ {@link $linkClass$}&#10; * @Author: $user$&#10; * @CreateDate: $data$&#10; */" description="presenter 注释" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="mouse" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="enum" expression="enum(&quot;Fragment&quot;,&quot;Adapter&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="linkClass" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="user" expression="user()" defaultValue="" alwaysStopAt="true" />
+    <variable name="data" expression="concat(date(),&quot; &quot;,time())" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+      <option name="KOTLIN" value="true" />
+    </context>
+  </template>
+  <template name="/ca" value="/**&#10; * @Description: $mouse$&#10; * @Author: $user$&#10; * @CreateDate: $data$&#10; * @scheme: $scheme$&#10; */" description="activity doc" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="mouse" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="user" expression="user()" defaultValue="" alwaysStopAt="true" />
+    <variable name="data" expression="concat(date(),&quot; &quot;,time())" defaultValue="" alwaysStopAt="true" />
+    <variable name="scheme" expression="groovyScript(&quot;def params = _1; def path = params.split('__')[0]; def className = params.split('__')[1].replace('.kt','').replace('.java','').replace('/','.'); def file = new File(path); def androidManifestFile = null; def scheme = '暂未配置'; while ((file = file.parentFile) != null) {     if (file.absolutePath.endsWith('src/main')) {         androidManifestFile = file;         break;     } }; if (androidManifestFile == null) {     return scheme; }; androidManifestFile = new File(androidManifestFile, 'AndroidManifest.xml'); if (!androidManifestFile.exists()) {     return scheme; }; def xmlParser = new XmlParser().parse(androidManifestFile); def packageName = xmlParser.attributes().get('package'); def application = xmlParser.application; application.activity.each { activity -&gt;     def attributes = activity.attributes();     def activityNameEntry = attributes.find {         return 'name' == it.key.localPart &amp;&amp; 'android' == it.key.prefix;     };     if (activityNameEntry != null) {         def activityName = activityNameEntry.value;         if (activityName.startsWith('.')) {             activityName = packageName + activityName;         };         if (activityName == className) {             activity.each {                 def data = it.data;                 if (data != null) {                     data.each{                         def dataAttributes = it.attributes();                         def schemeQName = new groovy.xml.QName('http://schemas.android.com/apk/res/android', 'scheme', 'android');                         def schemeData =  dataAttributes.get(schemeQName);                         if (schemeData != null) {                             def pathPrefixQName = new groovy.xml.QName('http://schemas.android.com/apk/res/android', 'pathPrefix', 'android');                             def pathPrefixData = dataAttributes.get(pathPrefixQName);                             def hostQName = new groovy.xml.QName('http://schemas.android.com/apk/res/android', 'host', 'android');                             def hostData = dataAttributes.get(hostQName);                             if (pathPrefixData != null &amp;&amp; hostData != null) {                                 def schemeStr = schemeData + '://' + hostData + pathPrefixData;                                 scheme = schemeStr;                             };                         };                     };                 };             };         };     }; }; return scheme;&quot;, concat(filePath(),&quot;__&quot;,fileRelativePath()))" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+      <option name="KOTLIN" value="true" />
+    </context>
+  </template>
+  <template name="/cad" value="/**&#10; * @Description: $mouse$&#10; * @Relation: Fragment {@link $linkClass$}&#10; * @Author: $user$&#10; * @CreateDate: $data$&#10; */" description="Adapter" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="mouse" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="linkClass" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="user" expression="user()" defaultValue="" alwaysStopAt="true" />
+    <variable name="data" expression="concat(date(),&quot; &quot;,time())" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+      <option name="KOTLIN" value="true" />
+    </context>
+  </template>
+  <template name="/cf" value="/**&#10; * @Description: $mouse$&#10; * @Relation: Fragment {@link $linkClass$}&#10; * @Author: $user$&#10; * @CreateDate: $data$&#10; */" description="Fragment" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="mouse" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="linkClass" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="user" expression="user()" defaultValue="" alwaysStopAt="true" />
+    <variable name="data" expression="concat(date(),&quot; &quot;,time())" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+      <option name="KOTLIN" value="true" />
+    </context>
+  </template>
+</templateSet>
