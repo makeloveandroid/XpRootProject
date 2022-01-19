@@ -45,3 +45,7 @@ java -jar ./ApkRoot.jar -host ./宿主.apk -virus ./xposed模块.apk -debug 1
 ```
 java -jar ./ApkRoot.jar -host ./宿主.apk -virus ./xposed模块.apk -dex 1
 ```
+
+### 关于签名
+1. 如果要使用自己的签名文件，修改 `XpRoot/src/main/resources/keystore` 文件。
+2. 修改签名代码 `SignApkTask.kt`
