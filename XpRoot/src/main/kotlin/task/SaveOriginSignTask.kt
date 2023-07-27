@@ -1,6 +1,5 @@
 package task
 
-import com.sun.org.apache.bcel.internal.generic.RET
 import util.ApkSignatureHelper
 import util.Log
 import java.io.File

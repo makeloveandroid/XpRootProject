@@ -83,7 +83,7 @@ public class ManifestParser {
                             }
                         }
 
-                        if (!TextUtils.isEmpty(packageName) && !TextUtils.isEmpty(applicationName) && !TextUtils.isEmpty(currentActivity) && action && category) {
+                        if (!TextUtils.isEmpty(packageName)  && !TextUtils.isEmpty(currentActivity) && action && category) {
                             return new ManifestData(packageName, applicationName, currentActivity);
                         }
                     }

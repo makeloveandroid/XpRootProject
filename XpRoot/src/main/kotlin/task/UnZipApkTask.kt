@@ -1,5 +1,6 @@
 package task
 
+import brut.apktool.Main
 import util.*
 import java.io.File
 import java.lang.RuntimeException
@@ -33,7 +34,9 @@ class UnZipApkTask(private val apkPath: String) : Task<String, UnZipApkData>() {
         val dir = File(parent, "app")
         dir.mkdirs()
         val data = UnZipApkData(dir, ArrayList())
-        ApkZipUtils.unzipFile(apk, dir, data.uncompressedFilesOrExts, null)
+//        ApkZipUtils.unzipFile(apk, dir, data.uncompressedFilesOrExts, null)
+//        d /Users/wengege/Desktop/yout/YouTube.apk -r -s -f -o /Users/wengege/Desktop/yout/dd
+        Main.main(arrayOf("d", apk.absolutePath, "-r", "-s", "-f", "-o", dir.absolutePath))
         return data
     }
 

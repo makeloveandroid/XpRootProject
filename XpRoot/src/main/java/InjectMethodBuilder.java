@@ -1,5 +1,4 @@
 import com.google.common.collect.Lists;
-import jdk.nashorn.internal.ir.CallNode;
 import org.jetbrains.annotations.Nullable;
 import org.jf.dexlib2.AccessFlags;
 import org.jf.dexlib2.Opcode;
@@ -7,22 +6,15 @@ import org.jf.dexlib2.builder.MutableMethodImplementation;
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c;
 import org.jf.dexlib2.iface.Method;
 import org.jf.dexlib2.iface.MethodImplementation;
-import org.jf.dexlib2.iface.MethodParameter;
 import org.jf.dexlib2.iface.instruction.Instruction;
 import org.jf.dexlib2.iface.reference.MethodReference;
-import org.jf.dexlib2.iface.reference.TypeReference;
 import org.jf.dexlib2.immutable.ImmutableMethod;
 import org.jf.dexlib2.immutable.ImmutableMethodImplementation;
-import org.jf.dexlib2.immutable.ImmutableMethodParameter;
 import org.jf.dexlib2.immutable.instruction.ImmutableInstruction;
-import org.jf.dexlib2.immutable.instruction.ImmutableInstruction35c;
 import org.jf.dexlib2.immutable.instruction.ImmutableInstructionFactory;
 import org.jf.dexlib2.immutable.reference.ImmutableMethodReference;
-import org.jf.dexlib2.immutable.reference.ImmutableTypeReference;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 
 /**

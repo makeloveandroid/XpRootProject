@@ -4,6 +4,7 @@ const val IS_DEBUG = true
 
 object Log {
     private var block: ((String, String) -> Unit)? = null
+    private var block2: ((String, String) -> Unit)? = null
 
     @JvmStatic
     @Synchronized
@@ -19,7 +20,20 @@ object Log {
 
     @JvmStatic
     @Synchronized
+    fun t(tag: String, msg: String) {
+        block2?.invoke(tag, msg)
+    }
+
+
+    @JvmStatic
+    @Synchronized
     fun setTextBack(block: (String, String) -> Unit) {
         this.block = block
+    }
+
+    @JvmStatic
+    @Synchronized
+    fun setTextTips(block: (String, String) -> Unit) {
+        this.block2 = block
     }
 }

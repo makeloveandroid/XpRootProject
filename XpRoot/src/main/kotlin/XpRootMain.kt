@@ -80,6 +80,12 @@ fun initOptions(): Options {
             .desc("是否安装签名后的Apk")
             .build()
 
+    val isTrace = Option.builder("isTrace")
+        .longOpt("isTrace")
+        .hasArg(true)
+        .desc("是否是获取Trace包")
+        .build()
+
     val adb = Option.builder("adbPath")
         .longOpt("adbPath")
         .hasArg(true)
@@ -93,5 +99,6 @@ fun initOptions(): Options {
     options.addOption(virusOption)
     options.addOption(install)
     options.addOption(adb)
+    options.addOption(isTrace)
     return options
 }
